@@ -7,7 +7,7 @@ Picture.create!(
 Picture.create!(
     :title => "Sea Power",
     :artist => "Stephen Scullion",
-    :url => "http//monicao.s3.amazonaws.com/bitmaker/wave.jpg"
+    :url => "http://monicao.s3.amazonaws.com/bitmaker/wave.jpg"
     )
 
 Picture.create!(
