@@ -1,28 +1,58 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+In order to learn SQL, we'll go through some simple exercises to start
+ 
+Given the following statement:
+ 
+CREATE TABLE `users` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`email` varchar(255) NOT NULL,
+`password` varchar(32) NOT NULL,
+PRIMARY KEY (`id`)
+);
+What does the AUTO_INCREMENT flag do?
+next id will be 12 on order
+ 
+What does int(11) mean?
+id can be 11 characters long.
+ 
+What is users in this statement?
+ "users'
+ 
+Explain the concept of a primary key.
+ is id of the table, is unique
+ 
+ 
+Explain the concept of a foreign key.
+ the foreign key is id, that connect two tables.
+ 
+ 
+Queries
+ 
+All the following questions deal with the attached SQL database. Make sure you follow the directions in the Google Doc on how to import the database.
+ 
+Get a list of all the usernames from the users table.
+ 
+SELECT email FROM users;
+ 
+Get the name of all users who have placed orders for an iPhone
+SELECT email FROM users
+INNER JOIN orders 
+ON users.id = orders.user_id
+ 
+INNER JOIN orders_products
+ON orders.id = orders_products.order_id
+ 
+INNER JOIN products
+ON orders_products.id = products.id
+ 
+WHERE products.name = "iPhone";
+ 
+ 
+Get a list of all the users (id's are fine) who have placed orders over 300$. N.B. The cost in the products table is in cents, not dollars.
+ 
+SELECT email FROM users
+INNER JOIN orders
+ON users.id=orders.user_id
+INNER JOIN orders_products
+ON orders.id=orders_products.product_id
+INNER JOIN products ON orders_products.product_id=products.id
+HAVING sum(products.cost)>30000;
